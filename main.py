@@ -20,6 +20,9 @@ walls = [
     pygame.Rect(500, 150, 20, 200),
 ]
 
+# Number of rays
+num_rays = 36  # Change the number of rays as needed
+
 # Main loop
 while True:
     for event in pygame.event.get():
@@ -38,11 +41,14 @@ while True:
     for wall in walls:
         pygame.draw.rect(screen, (0, 0, 0), wall)
 
-    # Draw light sources and light rays
+    # Draw light sources and evenly spaced light rays
     for light_source in light_sources:
         pygame.draw.circle(screen, (255, 255, 0), light_source, 10)
 
-        for angle in range(0, 180, 10):  # Reduced the number of rays to 180
+        for i in range(num_rays):
+            # Calculate evenly spaced angles
+            angle = i * (360 / num_rays)
+
             # Convert angle to radians
             radians = math.radians(angle)
 
